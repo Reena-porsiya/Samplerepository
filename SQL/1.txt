@@ -1,0 +1,29 @@
+public static void deleteProgram(int programId) {
+    // JDBC connection variables
+    String url = "jdbc:mysql://localhost:3306/your_database_name";
+    String username = "your_username";
+    String password = "your_password";
+
+    // SQL query to delete the program
+    String query = "DELETE FROM programs WHERE program_id = " + programId;
+
+    try {
+        // Establish a connection to the MySQL database
+        Connection connection = DriverManager.getConnection(url, username, password);
+
+        // Create a statement object
+        Statement statement = connection.createStatement();
+
+        // Execute the delete query
+        int rowsAffected = statement.executeUpdate(query);
+
+        // Print the number of rows affected
+        System.out.println(rowsAffected + " program(s) deleted successfully.");
+
+        // Close the statement and connection
+        statement.close();
+        connection.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}

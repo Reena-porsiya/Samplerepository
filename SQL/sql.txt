@@ -1,0 +1,162 @@
+select * from "SampleSchema"."transactions";
+
+select * from "SampleSchema"."Customer";
+
+select tranid , "Customer"."name"
+from "SampleSchema"."transactions"
+INNER JOIN "SampleSchema"."Customer"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id";
+
+select "Customer"."name", "Customer"."id" , "transactions"."tranid"
+from "SampleSchema"."Customer"
+LEFT JOIN "SampleSchema"."transactions"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id";
+
+
+
+
+
+
+
+
+
+
+
+
+select "Customer"."name", "Customer"."id", "transactions"."tranid"
+from "SampleSchema"."Customer"
+RIGHT JOIN "SampleSchema"."transactions"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id";
+
+select "Customer"."name", "transactions"."customerid"
+from "SampleSchema"."Customer"
+FULL OUTER JOIN "SampleSchema"."transactions"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id";
+
+select "Customer"."id"
+from "SampleSchema"."Customer"
+UNION ALL
+select "transactions"."customerid"
+from "SampleSchema"."transactions";
+
+
+
+select count(id), address from "SampleSchema"."Customer"
+GROUP by address;
+
+
+
+
+
+select count(id), address from "SampleSchema"."Customer"
+GROUP by address
+having count(id) > 1;
+
+create or replace procedure updatetxn(
+   id smallint
+)
+language plpgsql    
+as $$
+begin
+    
+    update "SampleSchema"."transactions"
+    set trandesc = 'Reliance digital purchase'
+    where tranid = id;
+
+    commit;
+end
+$$
+
+call updatetxn(1213::smallint);
+
+
+select "Customer"."name",  "Customer"."id", tranid, "transfers"."id"
+from "SampleSchema"."Customer"
+LEFT JOIN "SampleSchema"."transactions"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id"
+LEFT JOIN "SampleSchema"."transfers"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."transfers"."customerid"
+
+
+CREATE VIEW CUSTOMER_TRANSACTION_VIEW AS
+select "Customer"."name",  "Customer"."id", tranid
+from "SampleSchema"."Customer"
+LEFT JOIN "SampleSchema"."transactions"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id"
+
+
+drop view CUSTOMER_TRANSACTION_VIEW;
+
+CREATE VIEW CUSTOMER_TRANSACTION_VIEW AS
+select "Customer"."name",  "Customer"."id", tranid, trandesc
+from "SampleSchema"."Customer"
+LEFT JOIN "SampleSchema"."transactions"
+ON "SampleSchema"."transactions"."customerid" = "SampleSchema"."Customer"."id"
+
+select * from CUSTOMER_TRANSACTION_VIEW;
+
+select * from customer_transaction_view
+order by customer_transaction_view.name;
+
+
+
+select * from customer_transaction_view
+where customer_transaction_view.name LIKE 'V%'
+order by customer_transaction_view.name;
+
+
+select * from "SampleSchema"."Customer"
+where address IN ('Chennai', 'London');
+
+select * from "SampleSchema"."Customer"
+where address NOT IN ('Chennai', 'London');
+
+SELECT * FROM "SampleSchema"."transactions"
+WHERE tranamount BETWEEN 100 AND 105;
+
+select mysubquery.name as test_view from (select * from "SampleSchema"."Customer") mysubquery;
+
+select * from "SampleSchema"."Customer"
+where address IN ('Chennai', 'London'); (Assignment: Create another table with locations. Use IN and subqueries)
+
+
+09/08\2023
+
+
+select  customer.customer_name,orders.food_name
+from orders,customer
+where orders.customer_id = customer.customer_id;
+
+
+update customer
+set customer_name = 'JAS', city= 'MADURAI'
+where customer_id = 1001;
+
+
+delete from customer where customer_id=1002;
+
+select  orders.order_no,customer.customer_name, orders.order_date
+from orders
+INNER JOIN customer ON orders.customer_id=customer.customer_id;
+
+
+SELECT COUNT(customer_id), city
+FROM customer
+GROUP BY city
+HAVING COUNT(customer_id) > 1;
+
+
+
+SELECT * FROM ORDERS;
+INSERT INTO ORDERS VALUES(1,04,300,1001,'PIZZA');
+INSERT INTO ORDERS VALUES(2,06,500,1003,'BRIYANI');
+INSERT INTO ORDERS VALUES(5,07,900,1004,'CHICKEN65');
+INSERT INTO ORDERS VALUES(6,05,700,1002,'PASTA');
+INSERT INTO ORDERS VALUES(7,01,400,1006,'NOODLES');
+
+
+SELECT * FROM CUSTOMER;
+INSERT INTO CUSTOMER VALUES(1001,'REENA','DINDIGUL',201);
+INSERT INTO CUSTOMER VALUES(1002,'MALAR','MADURAI',202);
+INSERT INTO CUSTOMER VALUES(1003,'VIKRAM','VILUPURAM',203);
+INSERT INTO CUSTOMER VALUES(1004,'VARRUN','CHENNAI',204);
