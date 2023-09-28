@@ -1,0 +1,36 @@
+public void removeNode(int value) {
+		rootNode = removeNode(rootNode, value);
+	}
+
+	private TreeNode removeNode(TreeNode currentNode, int value) {
+		if (currentNode == null) {
+			return null;
+		}
+
+		int currentValue = currentNode.getValue();
+
+		if (value < currentValue) {
+			currentNode.setLeftNode(removeNode(currentNode.getLeftNode(), value));
+		} else if (value > currentValue) {
+			currentNode.setRightNode(removeNode(currentNode.getRightNode(), value));
+		} else {
+			if (currentNode.getLeftNode() == null) {
+				return currentNode.getRightNode();
+			} else if (currentNode.getRightNode() == null) {
+				return currentNode.getLeftNode();
+			}
+			currentNode.setValue(findMinValue(currentNode.getRightNode()));
+			currentNode.setRightNode(removeNode(currentNode.getRightNode(), currentNode.getValue()));
+		}
+
+		return currentNode;
+	}
+
+	private int findMinValue(TreeNode node) {
+		int minValue = node.getValue();
+		while (node.getLeftNode() != null) {
+			minValue = node.getLeftNode().getValue();
+			node = node.getLeftNode();
+		}
+		return minValue;
+	}

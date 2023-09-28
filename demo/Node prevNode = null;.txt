@@ -1,0 +1,24 @@
+Node prevNode = null;
+Node currentNode = headNode;
+		
+		while (currentNode != null) {
+			if (currentNode.getName().equals(name)) {
+				// If the node to be deleted is the head node
+				if (prevNode == null) {
+					headNode = currentNode.getNextNode();
+				} else {
+					// Update the previous node's nextNode to skip the current node
+					prevNode.setNextNode(currentNode.getNextNode());
+				}
+				// Optional: You may want to release resources for the node being deleted.
+				currentNode = null;
+				return; // Node found and deleted, exit the method.
+			}
+			
+			// Move to the next node
+			prevNode = currentNode;
+			currentNode = currentNode.getNextNode();
+		}
+		
+		// If the node is not found, do nothing (optional: you may print a message).
+	}

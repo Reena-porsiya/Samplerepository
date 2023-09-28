@@ -1,0 +1,14 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] input = {12, 23, 11, 89, 76, -19, 62, 87, 26, 56, 0, 0};
+
+        for (int i = 0; i <input.length-2; i++) {
+       if(i==2||i==3 ||i==6||i==7){
+       continue;
+ }
+
+            int sum = input[i] + input[i + 2];
+            System.out.println(i + "+" + (i + 2) + "=" + sum);
+        }
+    }
+}

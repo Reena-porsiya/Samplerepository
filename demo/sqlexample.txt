@@ -1,0 +1,80 @@
+Certainly! Here's an example of how you can design a college database in MySQL with different tables, including Department, Student, Books, and Library. I will also show you how to use primary key and foreign key relationships, insert records, demonstrate joins, and delete records.
+
+First, let's create the Department table:
+
+sql
+CREATE TABLE Department (
+  dept_id INT PRIMARY KEY,
+  dept_name VARCHAR(50)
+);
+Next, we'll create the Student table with a foreign key reference to the Department table:
+
+sql
+CREATE TABLE Student (
+  student_id INT PRIMARY KEY,
+  student_name VARCHAR(50),
+  dept_id INT,
+  FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+);
+Then, let's create the Books table with a foreign key reference to the Department table:
+
+sql
+CREATE TABLE Books (
+  book_id INT PRIMARY KEY,
+  book_title VARCHAR(100),
+  dept_id INT,
+  FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+);
+Finally, we'll create the Library table with foreign key references to the Books and Student tables:
+
+sql
+CREATE TABLE Library (
+  library_id INT PRIMARY KEY,
+  book_id INT,
+  student_id INT,
+  FOREIGN KEY (book_id) REFERENCES Books(book_id),
+  FOREIGN KEY (student_id) REFERENCES Student(student_id)
+);
+Now, let's insert some records into the tables. Here's an example:
+
+sql
+-- Insert records into the Department table
+INSERT INTO Department (dept_id, dept_name)
+VALUES (1, 'Computer Science'),
+       (2, 'Electrical Engineering'),
+       (3, 'Mechanical Engineering');
+
+-- Insert records into the Student table
+INSERT INTO Student (student_id, student_name, dept_id)
+VALUES (1, 'John Doe', 1),
+       (2, 'Jane Smith', 2),
+       (3, 'Mike Johnson', 3);
+
+-- Insert records into the Books table
+INSERT INTO Books (book_id, book_title, dept_id)
+VALUES (1, 'Introduction to Programming', 1),
+       (2, 'Electromagnetic Theory', 2),
+       (3, 'Mechanics of Materials', 3);
+
+-- Insert records into the Library table
+INSERT INTO Library (library_id, book_id, student_id)
+VALUES (1, 1, 1),
+       (2, 2, 2),
+       (3, 3, 3);
+To demonstrate the usage of joins, let's perform a join operation between the Student, Library, and Books tables. This query will retrieve the names of students and the titles of the books they borrowed:
+
+sql
+SELECT s.student_name, b.book_title
+FROM Student s
+JOIN Library l ON s.student_id = l.student_id
+JOIN Books b ON l.book_id = b.book_id;
+To delete records, let's say we want to delete a record from the Department table:
+
+sql
+DELETE FROM Department
+WHERE dept_id = 3;
+This query will delete the department with a dept_id of 3 from the Department table.
+
+This is a basic example to get you started. In a real-world scenario, you would likely have more columns and additional tables in your college database.
+
+I hope this helps! Let me know if you have any further questions.

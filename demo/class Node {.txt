@@ -1,0 +1,93 @@
+class Node {
+    private String data;
+    private Node next;
+
+    public Node(String data) {
+        this.data = data;
+        this.next = null;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Node getNext() {
+        return next;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+}
+
+public class Queue2 {
+    private Node headNode;
+
+    public Node getHeadNode() {
+        return headNode;
+    }
+
+    public void setHeadNode(Node headNode) {
+        this.headNode = headNode;
+    }
+
+    public void addNode(String name) {
+        Node newNode = new Node(name);
+        if (headNode == null) {
+            headNode = newNode;
+        } else {
+            Node current = headNode;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);
+        }
+    }
+ public void insertNodeVimal() {
+        Node newNode = new Node("vimal");
+        if (headNode == null) {
+            headNode = newNode;
+        } else {
+            Node current = headNode;
+            while (current.getNext() != null) {
+				if (current.getData().equals("John")) {
+		newNode.setNext(current.getNext());
+		current.setNext(newNode);
+		return;
+		// Node inserted, exit the method
+				                }
+		current = current.getNext();
+				            				}
+ // If "ram" is not found, append the node to the end
+
+ 			current.setNext(newNode);
+				        }
+    }
+
+    public void display() {
+        Node current = headNode;
+        while (current != null) {
+            System.out.print(current.getData() + "  ");
+            current = current.getNext();
+        }
+        System.out.println(" ");
+ }
+
+    public static void main(String[] args) {
+        Queue2 q1 = new Queue2();
+        q1.addNode("John");
+        q1.addNode("Lisa");
+        q1.addNode("ram");
+        q1.addNode("abi");
+
+        // Inserting the node with data "vimal"
+        q1.insertNodeVimal();
+
+        q1.display();
+    }
+}
+

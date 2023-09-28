@@ -1,0 +1,15 @@
+Apologies for any confusion caused. Let me clarify the statement: "Since this operation doesn't produce any output, null is returned."
+
+In Java, methods can have a return type, indicating the type of value they will return when invoked. For example, the int return type indicates that the method will return an integer value. However, in some cases, a method might not have a specific return value, and it is denoted by the void return type. The void return type means the method does not return any value.
+
+In the provided code, the methods push, pop, and getMin have a void return type, meaning they do not return any value. When you call these methods, they perform certain operations or modify the internal state of the MinStack object, but they don't provide a specific value as output. Therefore, the return type of void indicates that nothing is returned from these methods.
+
+Here's a breakdown of what happens during each method:
+
+push(int val): This method adds a new element to the stack and also updates the minStack if the new value is smaller than or equal to the current minimum value. However, this method doesn't produce any specific value as output, so null is returned. It is essential to understand that null is not a value produced by the method; it is just the indication that the method doesn't have a meaningful return value.
+
+pop(): This method removes the top element from the stack and, if necessary, from the minStack. Like the push method, it doesn't produce any specific value as output, so null is returned.
+
+getMin(): This method retrieves the minimum element in the stack by peeking the top element from the minStack. It returns this minimum value as the output of the method. However, if the minStack is empty (meaning the stack is also empty), there is no meaningful minimum value to return. In such cases, the method throws a RuntimeException to indicate that the operation cannot be performed on an empty stack.
+
+In the Main class's main method, when you call these methods, the return value is null for push and pop, and for getMin, it provides the minimum value as mentioned earlier. The provided code does not explicitly print the return values of push and pop since they are void and not required to be printed. However, the output of the program will still be as expected, as demonstrated in the earlier examples.

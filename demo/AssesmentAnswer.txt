@@ -1,0 +1,10 @@
+1.c.241
+2.a.true
+3.yes
+4.C.Front end technologies. They are used in browsers.
+5.a.yes
+6.d.None of the above
+7.b.Hello gets printed ten times.
+8.b.no
+9.a.yes
+10.b.Hello1 gets printed first. Hello2 next.
