@@ -1,0 +1,42 @@
+import java.util.*;
+public class TrainSchedule {
+    public static void main(String[] args) {
+        // Create Schedule objects with hardcoded data
+        Schedule schedule1 = new Schedule("2023-09-16", "CHENNAI", "DELHI");
+        Schedule schedule2 = new Schedule("2023-09-27", "CHENNAI", "Hyderabad");
+
+        // Display the data for the first schedule
+        System.out.println("Train schedule for " + schedule1.getDate() + " from " + schedule1.getSource() + " to " + schedule1.getDestination() + ":");
+        System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+        System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+
+        // Display the data for the second schedule
+        System.out.println("\nTrain schedule for " + schedule2.getDate() + " from " + schedule2.getSource() + " to " + schedule2.getDestination() + ":");
+        System.out.println("TrainNumber 12345: From time - 09:00 AM, Arrival time - 11:00 AM");
+        System.out.println("TrainNumber 12345: From time - 12:00 PM, Arrival time - 02:00 PM");
+    }
+
+    static class Schedule {
+        private String date;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String source, String destination) {
+            this.date = date;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

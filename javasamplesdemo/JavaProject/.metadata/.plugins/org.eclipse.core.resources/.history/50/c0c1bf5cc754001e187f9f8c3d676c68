@@ -1,0 +1,90 @@
+import java.util.*;
+
+public class TrainSchedule1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for train data
+        System.out.print("Enter the train date (yyyy-MM-dd): ");
+        String trainDate = scanner.nextLine();
+        System.out.print("Enter the source: ");
+        String source = scanner.nextLine();
+        System.out.print("Enter the destination: ");
+        String destination = scanner.nextLine();
+
+        // Create a Train object with the provided data
+        Train train = new Train(trainDate, source, destination);
+
+        // Prompt the user for the date range
+        System.out.print("Enter the from date (yyyy-MM-dd): ");
+        String fromDate = scanner.nextLine();
+        System.out.print("Enter the to date (yyyy-MM-dd): ");
+        String toDate = scanner.nextLine();
+
+        // Display train schedules for the specified date range
+        displayTrainSchedulesForDateRange(train, fromDate, toDate);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    public static void displayTrainSchedulesForDateRange(Train train, String fromDate, String toDate) {
+        // Sample train schedule data (replace with your actual data)
+        Train[] trains = {
+            new Train("2023-09-16", "TrainNumber 12102", "CHENNAI", "DELHI"),
+            new Train("2023-09-17", "TrainNumber 12102", "CHENNAI", "DELHI"),
+            new Train("2023-09-16", "TrainNumber 13142", "CHENNAI", "Hyderabad"),
+            new Train("2023-09-16", "TrainNumber 13153", "CHENNAI", "Hyderabad"),
+            // Add more train information here as needed.
+        };
+
+        boolean found = false;
+
+        // Iterate through the trains and display details for the date range
+        for (Train currentTrain : trains) {
+            if (currentTrain.getDate().compareTo(fromDate) >= 0 && currentTrain.getDate().compareTo(toDate) <= 0) {
+                System.out.println("Train schedule for " + currentTrain.getDate() + ":");
+                System.out.println("Train Number: " + currentTrain.getTrainNumber());
+                System.out.println("Source: " + currentTrain.getSource());
+                System.out.println("Destination: " + currentTrain.getDestination());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for the provided date range.");
+        }
+    }
+
+    static class Train {
+        private String date;
+        private String trainNumber;
+        private String source;
+        private String destination;
+
+        public Train(String date, String trainNumber, String source, String destination) {
+            this.date = date;
+            this.trainNumber = trainNumber;
+            this.source = source;
+            this.destination = destination;
+        }
+
+       
+
+		public String getDate() {
+            return date;
+        }
+
+        public String getTrainNumber() {
+            return trainNumber;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

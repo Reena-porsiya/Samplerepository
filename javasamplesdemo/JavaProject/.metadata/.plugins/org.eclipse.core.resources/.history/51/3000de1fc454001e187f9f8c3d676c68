@@ -1,0 +1,82 @@
+import java.util.*;
+
+public class TrainSchedule {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for the from date
+        System.out.print("Enter the from date (yyyy-MM-dd): ");
+        String fromDate = scanner.nextLine();
+
+        // Prompt the user for the to date
+        System.out.print("Enter the to date (yyyy-MM-dd): ");
+        String toDate = scanner.nextLine();
+
+        displayTrainSchedulesForDateRange(fromDate, toDate);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    public static void displayTrainSchedulesForDateRange(String fromDate, String toDate) {
+        // Sample train schedule data (replace with your actual data)
+        Schedule[] schedules = {
+            new Schedule("2023-09-16", "Train 123", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-17", "Train 456", "CHENNAI", "Hyderabad"),
+            new Schedule("2023-09-18", "Train 789", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-19", "Train 101", "CHENNAI", "Hyderabad"),
+            // Add more schedule information here as needed.
+        };
+
+        boolean found = false;
+
+        // Iterate through the schedules and display details for the date range
+        for (Schedule schedule : schedules) {
+            if (isDateInRange(schedule.getDate(), fromDate, toDate)) {
+                System.out.println("Train schedule for " + schedule.getDate() + ":");
+                System.out.println("Train Number: " + schedule.getTrainNumber());
+                System.out.println("Source: " + schedule.getSource());
+                System.out.println("Destination: " + schedule.getDestination());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for the provided date range.");
+        }
+    }
+
+    public static boolean isDateInRange(String date, String fromDate, String toDate) {
+        return date.compareTo(fromDate) >= 0 && date.compareTo(toDate) <= 0;
+    }
+
+    static class Schedule {
+        private String date;
+        private String trainNumber;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String trainNumber, String source, String destination) {
+            this.date = date;
+            this.trainNumber = trainNumber;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getTrainNumber() {
+            return trainNumber;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class TrainSchedule1 {
+    public static void main(String[] args) {
+        String date = "2023-09-17"; // Change the date to the one you want to query
+        displayTrainSchedulesForDate(date);
+    }
+
+    public static void displayTrainSchedulesForDate(String date) {
+        // Sample train schedule data (replace with your actual data)
+        Schedule[] schedules = {
+            new Schedule("2023-09-16", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-16", "CHENNAI", "Hyderabad"),
+            new Schedule("2023-09-17", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-18", "CHENNAI", "Hyderabad"),
+            // Add more schedule information here as needed.
+        };
+
+        boolean found = false;
+
+        // Iterate through the schedules and display those matching the provided date
+        for (Schedule schedule : schedules) {
+            if (schedule.getDate().equals(date)) {
+                System.out.println("Train schedule for " + date + " from " + schedule.getSource() + " to " + schedule.getDestination() + ":");
+                System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+                System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for " + date);
+        }
+    }
+
+    static class Schedule {
+        private String date;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String source, String destination) {
+            this.date = date;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

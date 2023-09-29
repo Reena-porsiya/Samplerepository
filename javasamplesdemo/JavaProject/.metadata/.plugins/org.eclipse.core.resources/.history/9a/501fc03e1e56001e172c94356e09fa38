@@ -1,0 +1,92 @@
+import java.sql.Date;
+import java.util.Scanner;
+
+public class TrainSchedule1 {
+    public static void main(String[] args) {
+        TrainSchedule1 trainSchedules = new TrainSchedule1(); // Create an instance of the class
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the from date (yyyy-MM-dd): ");
+        String fromDateStr = scanner.nextLine();
+
+        System.out.print("Enter the to date (yyyy-MM-dd): ");
+        String toDateStr = scanner.nextLine();
+
+        Date fromDate = Date.valueOf(fromDateStr);
+        Date toDate = Date.valueOf(toDateStr);
+
+        Train train = trainSchedules.new Train(); // Create an instance of the non-static Train class
+
+        trainSchedules.displayTrainSchedulesForDateRange(train, fromDate, toDate); // Call non-static method using the instance
+
+        scanner.close();
+    }
+
+    private void displayTrainSchedulesForDateRange(TrainSchedule1.Train train, Date fromDate, Date toDate) {
+        // TODO Auto-generated method stub
+    }
+
+    public void displayTrainSchedulesForDateRange(Train train, Date fromDate, Date toDate) {
+        Train[] trains = {
+            new Train(Date.valueOf("2023-09-16"), "12102", "CHENNAI", "DELHI"),
+            new Train(Date.valueOf("2023-09-17"), "12102", "CHENNAI", "DELHI"),
+            new Train(Date.valueOf("2023-09-16"), "13142", "CHENNAI", "Hyderabad"),
+            new Train(Date.valueOf("2023-09-16"), "13153", "CHENNAI", "Hyderabad"),
+        };
+
+        boolean found = false;
+
+        for (Train trainItem : trains) {
+            if (isDateInRange(trainItem.getDate(), fromDate, toDate)) {
+                System.out.println("Train schedule for " + trainItem.getDate() + ":");
+                System.out.println("Train Number: " + trainItem.getTrainNumber());
+                System.out.println("Source: " + trainItem.getSource());
+                System.out.println("Destination: " + trainItem.getDestination());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for the provided date range.");
+        }
+    }
+
+    public boolean isDateInRange(Date date, Date fromDate, Date toDate) {
+        return date.compareTo(fromDate) >= 0 && date.compareTo(toDate) <= 0;
+    }
+
+    // Define a Train class to store train information
+    private class Train {
+        private Date date;
+        private String trainNumber;
+        private String source;
+        private String destination;
+
+        public Train() {
+            // Default constructor
+        }
+
+        public Train(Date date, String trainNumber, String source, String destination) {
+            this.date = date;
+            this.trainNumber = trainNumber;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public String getTrainNumber() {
+            return trainNumber;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

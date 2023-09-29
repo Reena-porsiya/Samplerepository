@@ -1,0 +1,21 @@
+
+import java.util.*;
+
+public class TrainSchedule1 {
+    public static void main(String[] args) {
+        
+        String date = "2023-09-16";
+        String source = "CHENNAI";
+        String destination = "DELHI";
+
+       
+        displayTrainSchedule(date, source, destination);
+    }
+
+    public static void displayTrainSchedule(String date, String source, String destination) {
+        System.out.println("Train schedule for " + date + " from " + source + " to " + destination + ":");
+        System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+        System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+        
+    }
+}

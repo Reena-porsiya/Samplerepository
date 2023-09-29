@@ -1,0 +1,24 @@
+import java.util.*;
+static class Schedule {
+        private String date;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String source, String destination) {
+            this.date = date;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }

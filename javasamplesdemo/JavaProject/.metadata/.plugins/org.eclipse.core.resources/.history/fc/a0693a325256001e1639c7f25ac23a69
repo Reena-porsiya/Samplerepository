@@ -1,0 +1,25 @@
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class Testing {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("Enter the from date (yyyy-MM-dd): ");
+        LocalDate fromDate = LocalDate.parse(scanner.nextLine());
+
+
+        System.out.print("Enter the to date (yyyy-MM-dd): ");
+        LocalDate toDate = LocalDate.parse(scanner.nextLine());
+        
+        TrainSchedules trainSchedules = new TrainSchedules();
+        trainSchedules.displayTrainSchedulesForDateRange(fromDate, toDate);
+        
+        scanner.close();
+    
+
+	}
+
+}

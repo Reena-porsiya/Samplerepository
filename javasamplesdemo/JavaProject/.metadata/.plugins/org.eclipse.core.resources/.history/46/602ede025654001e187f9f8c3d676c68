@@ -1,0 +1,92 @@
+import java.util.*;
+
+public class TrainSchedule1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for the date
+        System.out.print("Enter a date (yyyy-MM-dd): ");
+        String date = scanner.nextLine();
+
+        // Prompt the user for the destinations
+        System.out.print("Enter the first destination: ");
+        String destination1 = scanner.nextLine();
+
+        System.out.print("Enter the second destination: ");
+        String destination2 = scanner.nextLine();
+
+        displayTrainSchedulesForDate(date, destination1, destination2);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    public static void displayTrainSchedulesForDate(String date, String destination1, String destination2) {
+        // Sample train schedule data (replace with your actual data)
+        Schedule[] schedules = {
+            new Schedule("2023-09-16", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-16", "CHENNAI", "Hyderabad"),
+            new Schedule("2023-09-16", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-17", "CHENNAI", "DELHI"),
+            // Add more schedule information here as needed.
+        };
+
+        boolean found1 = false;
+        boolean found2 = false;
+
+        // Iterate through the schedules and display details based on conditions
+        for (Schedule schedule : schedules) {
+            if (schedule.getDate().equals(date) && schedule.getDestination().equals(destination1)) {
+                System.out.println("Train schedule for " + date + " from " + schedule.getSource() + " to " + schedule.getDestination() + ":");
+                if ("2023-09-16".equals(date) && "Hyderabad".equals(destination1)) {
+                    System.out.println("TrainNumber 13102: Departure time - 08:00 AM, Arrival time - 10:00 AM");
+                    System.out.println("TrainNumber 13102: Departure time - 11:00 AM, Arrival time - 01:00 PM");
+                } else {
+                    System.out.println("TrainNumber 12102: Departure time - 08:00 AM, Arrival time - 10:00 AM");
+                    System.out.println("TrainNumber 12102: Departure time - 11:00 AM, Arrival time - 01:00 PM");
+                }
+                found1 = true;
+            }
+
+            if (schedule.getDate().equals(date) && schedule.getDestination().equals(destination2)) {
+                System.out.println("Train schedule for " + date + " from " + schedule.getSource() + " to " + schedule.getDestination() + ":");
+                if ("2023-09-16".equals(date) && "Hyderabad".equals(destination2)) {
+                    System.out.println("TrainNumber 13102: Departure time - 08:00 AM, Arrival time - 10:00 AM");
+                    System.out.println("TrainNumber 13102: Departure time - 11:00 AM, Arrival time - 01:00 PM");
+                } else {
+                    System.out.println("TrainNumber 12102: Departure time - 08:00 AM, Arrival time - 10:00 AM");
+                    System.out.println("TrainNumber 12102: Departure time - 11:00 AM, Arrival time - 01:00 PM");
+                }
+                found2 = true;
+            }
+        }
+
+        if (!found1 && !found2) {
+            System.out.println("No train schedules found for the provided date and destinations.");
+        }
+    }
+
+    static class Schedule {
+        private String date;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String source, String destination) {
+            this.date = date;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

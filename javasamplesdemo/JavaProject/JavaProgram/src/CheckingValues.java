@@ -1,0 +1,16 @@
+
+public class CheckingValues {
+
+	public static void main(String[] args) {
+		boolean result=isDateInRange("2023-09-16","2023-09-1","2023-09-1");
+		System.out.println("is the date range?"+result);
+		
+		// TODO Auto-generated method stub
+	}
+		 public static boolean isDateInRange(String date, String fromDate, String toDate) {
+		        return date.compareTo(fromDate) >= 0 && date.compareTo(toDate) <= 0;
+		    
+
+	}
+
+}

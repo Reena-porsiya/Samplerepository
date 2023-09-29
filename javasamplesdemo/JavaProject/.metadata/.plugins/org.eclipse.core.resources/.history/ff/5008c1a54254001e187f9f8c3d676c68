@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class TrainSchedule {
+    public static void main(String[] args) {
+        if (args.length == 3) {
+            // Case 1: Display train schedule for a specific date, source, and destination.
+            String date = args[0];
+            String source = args[1];
+            String destination = args[2];
+            displayTrainSchedule(date, source, destination);
+        } else if (args.length == 2) {
+            // Case 2: Display train schedule for a date range.
+            String fromDate = args[0];
+            String toDate = args[1];
+            displayTrainSchedule(fromDate, toDate);
+        } else {
+            System.out.println("Invalid number of arguments.");
+            System.out.println("Usage: java TrainSchedule <date> <source> <destination>");
+            System.out.println("   or: java TrainSchedule <fromDate> <toDate>");
+        }
+    }
+
+    public static void displayTrainSchedule(String date, String source, String destination) {
+        System.out.println("Train schedule for " + date + " from " + source + " to " + destination + ":");
+        System.out.println("Train 123: Departure time - 08:00 AM, Arrival time - 10:00 AM");
+        System.out.println("Train 456: Departure time - 11:00 AM, Arrival time - 01:00 PM");
+        // Add more schedule information here as needed.
+    }
+
+    public static void displayTrainSchedule(String fromDate, String toDate) {
+        System.out.println("Train schedule from " + fromDate + " to " + toDate + ":");
+        System.out.println("Train 123: Departure time - 08:00 AM, Arrival time - 10:00 AM");
+        System.out.println("Train 456: Departure time - 11:00 AM, Arrival time - 01:00 PM");
+        // Add more schedule information here as needed.
+    }
+}

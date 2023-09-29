@@ -1,0 +1,67 @@
+import java.util.*;
+
+public class Train {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+       
+        System.out.print("Enter a date (yyyy-MM-dd): ");
+        String date = scanner.nextLine();
+        
+        displayTrainSchedulesForDate(date);
+
+       
+        scanner.close();
+    }
+
+    public static void displayTrainSchedulesForDate(String date) {
+        
+        Schedule[] schedules = {
+            new Schedule("2023-09-16", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-16", "CHENNAI", "Hyderabad"),
+            new Schedule("2023-09-17", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-18", "CHENNAI", "Hyderabad"),
+            
+        };
+
+        boolean found = false;
+
+        // Iterate through the schedules and display those matching the provided date
+        for (Schedule schedule : schedules) {
+            if (schedule.getDate().equals(date)) {
+                System.out.println("Train schedule for " + date + " from " + schedule.getSource() + " to " + schedule.getDestination() + ":");
+                System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+                System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for " + date);
+        }
+    }
+
+    static class Schedule {
+        private String date;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String source, String destination) {
+            this.date = date;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

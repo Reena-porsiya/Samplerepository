@@ -1,0 +1,100 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class TrainSchedules1 {
+    public static void main(String[] args) {
+        TrainSchedules trainSchedules = new TrainSchedules();
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        System.out.print("Enter the from date (yyyy-MM-dd): ");
+        String fromDate = scanner.nextLine();
+
+        System.out.print("Enter the to date (yyyy-MM-dd): ");
+        String toDateStr = scanner.nextLine();
+
+        try {
+            Date fromDateObj = dateFormat.parse(fromDate);
+            Date toDate = dateFormat.parse(toDateStr);
+
+            trainSchedules.displayTrainSchedulesForDateRange(fromDateObj, toDate);
+        } catch (Exception e) {
+            System.out.println("Invalid date format. Please enter dates in yyyy-MM-dd format.");
+        } finally {
+            scanner.close();
+        }
+    }
+
+    public void displayTrainSchedulesForDateRange(Date fromDate, Date toDate) {
+        Train[] trains = {
+            new Train(parseDate("2023-09-16"), "12102", "CHENNAI", "DELHI"),
+            new Train(parseDate("2023-09-17"), "12102", "CHENNAI", "DELHI"),
+            new Train(parseDate("2023-09-16"), "13142", "CHENNAI", "Hyderabad"),
+            new Train(parseDate("2023-09-16"), "13153", "CHENNAI", "Hyderabad"),
+        };
+
+        boolean found = false;
+
+        for (Train train : trains) {
+            if (isDateInRange(train.getDate(), fromDate, toDate)) {
+                System.out.println("Train schedule for " + formatDate(train.getDate()) + ":");
+                System.out.println("Train Number: " + train.getTrainNumber());
+                System.out.println("Source: " + train.getSource());
+                System.out.println("Destination: " + train.getDestination());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for the provided date range.");
+        }
+    }
+
+    public boolean isDateInRange(Date date, Date fromDate, Date toDate) {
+        return date.compareTo(fromDate) >= 0 && date.compareTo(toDate) <= 0;
+    }
+
+    private Date parseDate(String dateStr) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String formatDate(Date date) {
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    class Train {
+        private Date date;
+        private String trainNumber;
+        private String source;
+        private String destination;
+
+        public Train(Date date, String trainNumber, String source, String destination) {
+            this.date = date;
+            this.trainNumber = trainNumber;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public String getTrainNumber() {
+            return trainNumber;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

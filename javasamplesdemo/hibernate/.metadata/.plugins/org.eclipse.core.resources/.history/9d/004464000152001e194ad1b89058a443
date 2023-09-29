@@ -1,0 +1,82 @@
+package com.demo.useronetoone.dto;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "Movie", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "MOVIE_ID"),
+    @UniqueConstraint(columnNames = "MOVIE_NAME") })
+public class MovieEntity implements Serializable {
+
+    private static final long serialVersionUID = -1798070786993154676L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MOVIE_ID")
+    private String movieId;
+
+    @Column(name = "MOVIE_NAME")
+    private String movieName;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Column(name = "DATE_TIME")
+    private String dateTime;
+
+    @Column(name = "MOVIE_PRICE")
+    private String moviePrice;
+
+    // Bidirectional one-to-one relationship with BookingEntity
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
+    private BookingEntity booking;
+
+    public Integer getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getMoviePrice() {
+        return moviePrice;
+    }
+
+    public void setMoviePrice(String moviePrice) {
+        this.moviePrice = moviePrice;
+    }
+
+    public BookingEntity getBooking() {
+        return booking;
+    }
+
+    public void setBooking(BookingEntity booking) {
+        this.booking = booking;
+    }
+
+}

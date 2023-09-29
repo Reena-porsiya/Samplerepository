@@ -1,0 +1,100 @@
+import java.util.*;
+
+public class Train {
+    public static void main(String[] args) {
+        if (args.length == 1) {
+            // Case 1: Display train schedule for a specific date.
+            String date = args[0];
+            displayTrainSchedulesForDate(date);
+        } else if (args.length == 2) {
+            // Case 2: Display train schedule for a date range.
+            String fromDate = args[0];
+            String toDate = args[1];
+            displayTrainSchedulesForDateRange(fromDate, toDate);
+        } else {
+            System.out.println("Invalid number of arguments.");
+            System.out.println("Usage: java TrainSchedule1 <date>");
+            System.out.println("   or: java TrainSchedule1 <fromDate> <toDate>");
+        }
+    }
+
+    public static void displayTrainSchedulesForDate(String targetDate) {
+        // Sample train schedule data (replace with your actual data)
+        Schedule[] schedules = {
+            new Schedule("2023-09-16", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-16", "CHENNAI", "Hyderabad"),
+            new Schedule("2023-09-17", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-18", "CHENNAI", "Hyderabad"),
+            // Add more schedule information here as needed.
+        };
+
+        boolean found = false;
+
+        for (Schedule schedule : schedules) {
+            if (schedule.getDate().equals(targetDate)) {
+                System.out.println("Train schedule for " + targetDate + " from " + schedule.getSource() + " to " + schedule.getDestination() + ":");
+                System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+                System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found for " + targetDate);
+        }
+    }
+
+    public static void displayTrainSchedulesForDateRange(String fromDate, String toDate) {
+        // Sample train schedule data (replace with your actual data)
+        Schedule[] schedules = {
+            new Schedule("2023-09-16", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-16", "CHENNAI", "Hyderabad"),
+            new Schedule("2023-09-17", "CHENNAI", "DELHI"),
+            new Schedule("2023-09-18", "CHENNAI", "Hyderabad"),
+            // Add more schedule information here as needed.
+        };
+
+        boolean found = false;
+
+        for (Schedule schedule : schedules) {
+            if (isDateInRange(schedule.getDate(), fromDate, toDate)) {
+                System.out.println("Train schedule for " + schedule.getDate() + " from " + schedule.getSource() + " to " + schedule.getDestination() + ":");
+                System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+                System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedules found within the date range from " + fromDate + " to " + toDate);
+        }
+    }
+
+    public static boolean isDateInRange(String targetDate, String fromDate, String toDate) {
+        return targetDate.compareTo(fromDate) >= 0 && targetDate.compareTo(toDate) <= 0;
+    }
+
+    static class Schedule {
+        private String date;
+        private String source;
+        private String destination;
+
+        public Schedule(String date, String source, String destination) {
+            this.date = date;
+            this.source = source;
+            this.destination = destination;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getSource() {
+            return source;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+    }
+}

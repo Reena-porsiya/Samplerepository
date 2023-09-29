@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class TrainSchedule {
+    public static void main(String[] args) {
+        String date = "2023-09-16";
+        String source = "CHENNAI";
+        String destination = "DELHI";
+
+        String date2 = "2023-09-27";
+        String source2 = "CHENNAI";
+        String destination2 = "Hyderabad";
+
+        displayTrainSchedule(date, source, destination);
+        displayTrainSchedule(date2, source2, destination2);
+    }
+
+    public static void displayTrainSchedule(String date, String source, String destination) {
+        // Sample train schedule data (replace with your actual data)
+        String[] availableDates = {
+            "2023-09-16-CHENNAI-DELHI",
+            "2023-09-27-CHENNAI-Hyderabad",
+            // Add more schedule information here as needed.
+        };
+
+        boolean found = false;
+
+        // Generate a unique key based on date, source, and destination
+        String key = date + "-" + source + "-" + destination;
+
+        // Check if the provided date is in the schedule data
+        for (String availableDate : availableDates) {
+            if (availableDate.equals(key)) {
+                System.out.println("Train schedule for " + date + " from " + source + " to " + destination + ":");
+                System.out.println("TrainNumber 12102: From time - 08:00 AM, Arrival time - 10:00 AM");
+                System.out.println("TrainNumber 12102: From time - 11:00 AM, Arrival time - 01:00 PM");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No train schedule found for " + date + " from " + source + " to " + destination);
+        }
+    }
+}
+
