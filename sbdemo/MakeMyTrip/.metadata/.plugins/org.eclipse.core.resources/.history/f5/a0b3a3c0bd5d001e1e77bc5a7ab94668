@@ -1,0 +1,47 @@
+package com.flights.entity;
+
+import jakarta.persistance.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+
+@Entity
+public class AircraftEntity {
+    @Id
+    private int aircraftId;
+    
+    @OneToOne
+    @JoinColumn(name = "aircraft_manufacturer_id")
+    private AircraftManufacturerEntity aircraftManufacturer;
+    
+    private String model;
+    
+    public int getAircraftId() {
+        return aircraftId;
+    }
+
+    public void setAircraftId(int aircraftId) {
+        this.aircraftId = aircraftId;
+    }
+
+    public AircraftManufacturerEntity getAircraftManufacturer() {
+        return aircraftManufacturer;
+    }
+
+    public void setAircraftManufacturer(AircraftManufacturerEntity aircraftManufacturer) {
+        this.aircraftManufacturer = aircraftManufacturer;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+    
+    
+}
+
+
+

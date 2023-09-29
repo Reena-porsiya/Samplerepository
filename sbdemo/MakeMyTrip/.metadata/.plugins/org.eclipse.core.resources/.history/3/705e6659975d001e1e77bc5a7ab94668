@@ -1,0 +1,9 @@
+package com.flights.model;
+
+import java.util.ArrayList;
+
+public class FlightAircraftInstance {
+	private int flightCall;
+    private int aircraftInstanceId;
+    private ArrayList<Flight> flights; 
+}

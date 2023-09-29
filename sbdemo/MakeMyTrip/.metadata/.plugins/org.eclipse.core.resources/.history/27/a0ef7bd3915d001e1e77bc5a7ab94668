@@ -1,0 +1,9 @@
+package com.flights.model;
+
+public class TravelClass {
+	private int travelClassId;
+    private String name;
+    private String description;
+    private AircraftSeat aircraftSeat;
+
+}

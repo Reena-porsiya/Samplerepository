@@ -1,0 +1,15 @@
+package com.flights.model;
+
+import java.util.ArrayList;
+
+public class Aircraft {
+	    private int aircraftId;
+	    private int aircraftManufacturerId;
+	    private String model;
+	    
+	    private ArrayList<AircraftManufacturer>aircraftManufacturers;
+	    
+	    
+	   
+
+}

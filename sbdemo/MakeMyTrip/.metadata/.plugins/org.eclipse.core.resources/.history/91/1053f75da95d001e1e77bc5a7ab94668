@@ -1,0 +1,29 @@
+package com.flights.model;
+
+
+public class Flight {
+	    private int flightCall;
+	    private int flightStatusId;
+	    private Schedules schedule;
+		public int getFlightCall() {
+			return flightCall;
+		}
+		public void setFlightCall(int flightCall) {
+			this.flightCall = flightCall;
+		}
+		public int getFlightStatusId() {
+			return flightStatusId;
+		}
+		public void setFlightStatusId(int flightStatusId) {
+			this.flightStatusId = flightStatusId;
+		}
+		public Schedules getSchedule() {
+			return schedule;
+		}
+		public void setSchedule(Schedules schedule) {
+			this.schedule = schedule;
+		}
+	    
+	   
+
+}

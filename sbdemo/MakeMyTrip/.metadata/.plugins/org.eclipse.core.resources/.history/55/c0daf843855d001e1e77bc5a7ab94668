@@ -1,0 +1,12 @@
+package com.flights.model;
+
+public class Airport {
+	public class Airport {
+	    private String iataAirportCode;
+	    private String name;
+	    private String city;
+	    private String iataCountryCode;
+	    private ArrayList<Direction> directions; 
+
+
+}

@@ -1,0 +1,13 @@
+package com.flights.model;
+
+import java.util.ArrayList;
+
+public class FlightSeatPrice {
+	private int flightCall;
+    private int aircraftId;
+    private int seatId;
+    private double priceUsed;
+    private ArrayList<Bookings> bookings; 
+    private ArrayList<Flight> flights; 
+    private ArrayList<Aircraft> aircrafts; 
+}

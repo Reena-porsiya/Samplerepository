@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="com.example.demo.model.Movie"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="com.mycompany.jpa.data.UserCrud"/>
+    <fullyQualifiedTypeName name="com.mycompany.jpa.data.MovieCrud"/>
+    <fullyQualifiedTypeName name="com.mycompany.jpa.business.UserBusiness"/>
+    <fullyQualifiedTypeName name="com.mycompany.jpa.entity.UserEntity"/>
+    <fullyQualifiedTypeName name="com.mycompany.jpa.entity.Movie"/>
+</qualifiedTypeNameHistroy>

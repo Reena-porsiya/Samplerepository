@@ -1,0 +1,36 @@
+package com.flights.entity;
+
+import com.flights.model.Aircraft;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "aircraftinstance")
+public class AircraftInstanceEntity {
+
+    @Id
+    private int aircraft_instance_id; 
+
+    @OneToOne
+    private Aircraft aircraft; 
+
+    
+
+    public int getAircraft_instance_id() {
+		return aircraft_instance_id;
+	}
+
+	public void setAircraft_instance_id(int aircraft_instance_id) {
+		this.aircraft_instance_id = aircraft_instance_id;
+	}
+
+	public Aircraft getAircraft() {
+		return aircraft;
+	}
+
+	public void setAircraft(Aircraft aircraft) {
+		this.aircraft = aircraft;
+	}
+
+	
+}

@@ -1,0 +1,54 @@
+package com.flights.model;
+
+import java.util.ArrayList;
+
+public class Bookings {
+	    private int clientId;
+	    private int flightCall;
+	    private int aircraftId;
+	    private int seatId;
+	    private int booking_id;
+	    
+	    private ArrayList<Payment> payments;
+
+		public int getClientId() {
+			return clientId;
+		}
+
+		public void setClientId(int clientId) {
+			this.clientId = clientId;
+		}
+
+		public int getFlightCall() {
+			return flightCall;
+		}
+
+		public void setFlightCall(int flightCall) {
+			this.flightCall = flightCall;
+		}
+
+		public int getAircraftId() {
+			return aircraftId;
+		}
+
+		public void setAircraftId(int aircraftId) {
+			this.aircraftId = aircraftId;
+		}
+
+		public int getSeatId() {
+			return seatId;
+		}
+
+		public void setSeatId(int seatId) {
+			this.seatId = seatId;
+		}
+
+		public int getBooking_id() {
+			return booking_id;
+		}
+
+		public void setBooking_id(int booking_id) {
+			this.booking_id = booking_id;
+		}
+
+}

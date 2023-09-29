@@ -1,0 +1,47 @@
+package com.flights.model;
+
+
+
+public class Airport {
+	
+	private String iataAirportCode;
+    private String name;
+    private String city;
+    private String iataCountryCode;  
+    
+    private Country country;
+    
+    
+	public Country getCountry() {
+		return country;
+	}
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	public String getIataAirportCode() {
+		return iataAirportCode;
+	}
+	public void setIataAirportCode(String iataAirportCode) {
+		this.iataAirportCode = iataAirportCode;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getIataCountryCode() {
+		return iataCountryCode;
+	}
+	public void setIataCountryCode(String iataCountryCode) {
+		this.iataCountryCode = iataCountryCode;
+	}
+	
+
+}

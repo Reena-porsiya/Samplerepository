@@ -1,0 +1,37 @@
+package com.flights.entity;
+
+package com.flights.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "clients")
+public class ClientEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id")
+    private int clientId;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "middle_name")
+    private String middleName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "passport")
+    private String passport;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+}

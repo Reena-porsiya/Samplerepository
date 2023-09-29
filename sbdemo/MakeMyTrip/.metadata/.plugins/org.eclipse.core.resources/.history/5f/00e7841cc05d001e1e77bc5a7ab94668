@@ -1,0 +1,30 @@
+package com.flights.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class AircraftManufacturerEntity {
+
+    @Id
+    private int aircraft_Manufacturer_id; 
+
+    private String name;
+
+	public int getAircraft_manufacturer_id() {
+		return aircraft_Manufacturer_id;
+	}
+
+	public void setAircraft_Manufacturer_id(int aircraft_Manufacturer_id) {
+		this.aircraft_Manufacturer_id = aircraft_Manufacturer_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+    
+}

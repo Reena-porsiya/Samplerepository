@@ -1,0 +1,52 @@
+package com.flights.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class AircraftSeatEntity {
+
+    @Id
+    
+    private int aircraft_id; 
+
+    @ManyToOne
+    private AircraftEntity aircraft; // Assuming you have an AircraftEntity class
+
+    private int seatId;
+
+    @OneToOne
+    private TravelClassEntity travelClass; // Assuming you have a TravelClassEntity class
+
+   
+    public int getAircraft_id() {
+		return aircraft_id;
+	}
+
+	public void setAircraft_id(int aircraft_id) {
+		this.aircraft_id = aircraft_id;
+	}
+
+	public AircraftEntity getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(AircraftEntity aircraft) {
+        this.aircraft = aircraft;
+    }
+
+    public int getSeatId() {
+        return seatId;
+    }
+
+    public void setSeatId(int seatId) {
+        this.seatId = seatId;
+    }
+
+    public TravelClassEntity getTravelClass() {
+        return travelClass;
+    }
+
+    public void setTravelClass(TravelClassEntity travelClass) {
+        this.travelClass = travelClass;
+    }
+}

@@ -1,0 +1,38 @@
+package com.flights.model;
+
+import java.util.ArrayList;
+
+public class FlightSeatPrice {
+	
+    private double priceUsed;
+    
+    private ArrayList<Flight> flights; 
+    private ArrayList<Aircraft> aircrafts;
+    private ArrayList<AircraftSeat>aircraftSeats;
+	public double getPriceUsed() {
+		return priceUsed;
+	}
+	public void setPriceUsed(double priceUsed) {
+		this.priceUsed = priceUsed;
+	}
+	public ArrayList<Flight> getFlights() {
+		return flights;
+	}
+	public void setFlights(ArrayList<Flight> flights) {
+		this.flights = flights;
+	}
+	public ArrayList<Aircraft> getAircrafts() {
+		return aircrafts;
+	}
+	public void setAircrafts(ArrayList<Aircraft> aircrafts) {
+		this.aircrafts = aircrafts;
+	}
+	public ArrayList<AircraftSeat> getAircraftSeats() {
+		return aircraftSeats;
+	}
+	public void setAircraftSeats(ArrayList<AircraftSeat> aircraftSeats) {
+		this.aircraftSeats = aircraftSeats;
+	}
+    
+    
+}

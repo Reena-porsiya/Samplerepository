@@ -1,0 +1,9 @@
+package com.flights.model;
+
+public class Flight {
+	    private int flightCall;
+	    private int scheduleId;
+	    private int flightStatusId;
+	    private ArrayList<FlightSeatPrice> flightSeatPrices; 
+
+}

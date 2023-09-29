@@ -1,0 +1,15 @@
+package com.flights.model;
+
+import java.security.Timestamp;
+import java.util.ArrayList;
+
+public class Schedules {
+	private int scheduleId;
+    private String originIataAirportCode;
+    private String destIataAirportCode;
+    private Timestamp departureTimeGmt;
+    private Timestamp arrivalTimeGmt;
+    private Flight flight; //flight arraylist
+    private ArrayList<Direction> directions;
+
+}

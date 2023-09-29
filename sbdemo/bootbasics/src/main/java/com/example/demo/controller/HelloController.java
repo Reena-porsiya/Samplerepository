@@ -1,0 +1,307 @@
+package com.example.demo.controller;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.example.demo.model.Movie;
+import com.example.demo.model.MovieEntity;
+import com.example.demo.model.Student;
+import com.google.gson.Gson;
+
+import org.hibernate.Session;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.SessionFactory;
+
+@RestController
+@RequestMapping("hello")
+public class HelloController {
+
+	/*
+	 * @Value("${dbservername}") private String dbservername;
+	 * 
+	 * @Value("${dbserveruserid}") private String dbserveruserid;
+	 */
+
+    @GetMapping("/abc/{name}")
+    public @ResponseBody String helloUser(@PathVariable String name) {
+		/*
+		 * System.out.println(dbservername); System.out.println(dbserveruserid);
+		 */
+        return "Hello, welcome " + name;
+    }
+
+    @GetMapping("/helloworld")
+    public @ResponseBody String helloWorld() {
+        return "Hello java fsd";
+    }
+
+    @GetMapping("/getStudents")
+    public @ResponseBody String studentList() {
+        Student s1 = new Student();
+        s1.setStudentId(123);
+        s1.setDepartmentName("ECE");
+        s1.setName("John");
+
+        Student s2 = new Student();
+        s2.setStudentId(124);
+        s2.setDepartmentName("ECE");
+        s2.setName("Lisa");
+
+        ArrayList<Student> list = new ArrayList<Student>();
+        list.add(s1);
+        list.add(s2);
+
+        Gson gson = new Gson();
+        String jsonArray = gson.toJson(list);
+        return jsonArray;
+    }
+
+    @GetMapping("/getMovie/{movie_id}")
+    public @ResponseBody String getMovieById(@PathVariable String movie_id) {
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            
+            String mysqlUrl = "jdbc:mysql://localhost:3306/sampleschemas";
+            Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
+
+           
+            String QUERY = "SELECT * FROM movie WHERE movie_id = ?";
+
+            
+            PreparedStatement preparedStatement = con.prepareStatement(QUERY);
+            preparedStatement.setString(1, movie_id);
+
+          
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Movie> listmovies = new ArrayList<Movie>();
+
+            
+            while (rs.next()) {
+                String movie_name = rs.getString("movie_name");
+                String date_time = rs.getString("date_time");
+                String desc = rs.getString("desc");
+                String movie_id1 = rs.getString("movie_id");
+                String movie_price = rs.getString("movie_price");
+
+                Movie movie = new Movie();
+                movie.setMovie_name(movie_name);
+                movie.setDate_time(date_time);
+                movie.setDesc(desc);
+                movie.setMovie_id(movie_id1);
+                movie.setMovie_price(movie_price);
+
+                listmovies.add(movie);
+            }
+
+           
+            Gson gson = new Gson();
+            String jsonArray = gson.toJson(listmovies);
+
+           
+            con.close();
+
+            return jsonArray;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error fetching movie data: " + e.getMessage();
+        }
+    }
+
+    @PutMapping("/updateMovie/{movie_id}")
+    public @ResponseBody String updateMovie(@PathVariable String movie_id, @RequestBody Movie updatedMovie) {
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            
+            String mysqlUrl = "jdbc:mysql://localhost:3306/sampleschemas";
+            Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
+
+            
+            String UPDATE_SQL = "UPDATE movie SET movie_name = ? WHERE movie_id = ?";
+
+            
+            PreparedStatement preparedStatement = con.prepareStatement(UPDATE_SQL);
+            preparedStatement.setString(1, updatedMovie.getMovie_name());
+            preparedStatement.setString(2, movie_id);
+
+            
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            
+            con.close();
+
+            if (rowsAffected > 0) {
+                return "Movie updated successfully";
+            } else {
+                return "No movie found with the given movie_id";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error updating movie: " + e.getMessage();
+        }
+    }
+    @DeleteMapping("/deleteMovie/{movie_id}")
+    public   @ResponseBody String deleteMovie(@PathVariable String movie_id) {
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            
+            String mysqlUrl = "jdbc:mysql://localhost:3306/sampleschemas";
+            Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
+
+            
+            String DELETE_SQL = "DELETE FROM movie WHERE movie_id = ?";
+
+           
+            PreparedStatement preparedStatement = con.prepareStatement(DELETE_SQL);
+            preparedStatement.setString(1, movie_id);
+
+            
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            
+            con.close();
+
+            if (rowsAffected > 0) {
+                return "Movie deleted successfully";
+            } else {
+                return "No movie found with the given movie_id";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error deleting movie: " + e.getMessage();
+        }
+    }
+    @PostMapping("/addMovie")
+    public @ResponseBody String addMovie(@RequestBody Movie newMovie) {
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            
+            String mysqlUrl = "jdbc:mysql://localhost:3306/sampleschemas";
+            Connection con = DriverManager.getConnection(mysqlUrl, "root", "root");
+
+           
+            String INSERT_SQL = "INSERT INTO movie (movie_name, movie_id,date_time, `desc`, movie_price) VALUES (?, ?,?, ?, ?)";
+
+           
+            PreparedStatement preparedStatement = con.prepareStatement(INSERT_SQL);
+            preparedStatement.setString(1, newMovie.getMovie_name());
+            preparedStatement.setString(2, newMovie.getMovie_id());
+            preparedStatement.setString(3, newMovie.getDate_time());
+            preparedStatement.setString(4, newMovie.getDesc());
+            preparedStatement.setString(5, newMovie.getMovie_price());
+
+            
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            
+            con.close();
+
+            if (rowsAffected > 0) {
+                return "Movie added successfully";
+            } else {
+                return "Failed to add the movie";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error adding movie: " + e.getMessage();
+        }
+    }
+    @PostMapping("/addMoviehibernate")
+    public @ResponseBody String addMoviehibernate() {
+    	SessionFactory sessionFactory = getSessionFactory(null);
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		MovieEntity MovieEntity = new MovieEntity();
+		// MovieEntity .setMovie_id("10091");
+		MovieEntity.setDate_time("2021-03-12  23:12:00");
+		MovieEntity.setMovie_price("450");
+		MovieEntity.setDesc("COMEDY");
+		MovieEntity.setMovie_name("JILLA");
+
+		session.persist(MovieEntity);
+
+		session.getTransaction().commit();
+		System.out.println("Generated emp id is : " + MovieEntity.getMovie_id());
+		// HibernateUtil.shutdown();
+		sessionFactory.close();
+		
+		return "home";
+    }
+    public static SessionFactory getSessionFactory(Class[] classes) {
+		Metadata metadata;
+		StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().configure().build();
+
+		if (classes == null) {
+			metadata = new MetadataSources(standardRegistry).getMetadataBuilder().build();
+		} else {
+			MetadataSources metadatasources = new MetadataSources(standardRegistry);
+			for (int index = 0; index < classes.length; index++) {
+				metadatasources.addAnnotatedClass(classes[index]);
+			}
+			metadata = metadatasources.getMetadataBuilder().build();
+
+		}
+
+		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+		return sessionFactory;
+
+	}
+	/*
+	 * @PostMapping("/addStudent") public @ResponseBody String
+	 * addStudent(@RequestBody Student newStudent) { try { // Assuming you have
+	 * already loaded the MySQL JDBC driver
+	 * Class.forName("com.mysql.cj.jdbc.Driver");
+	 * 
+	 * // Establish a database connection String mysqlUrl =
+	 * "jdbc:mysql://localhost:3306/sampleschemas"; Connection con =
+	 * DriverManager.getConnection(mysqlUrl, "root", "root");
+	 * 
+	 * // Define your INSERT_SQL statement String INSERT_SQL =
+	 * "INSERT INTO student (name, department_name) VALUES (?, ?)";
+	 * 
+	 * // Prepare the SQL statement with values from the newStudent object
+	 * PreparedStatement preparedStatement = con.prepareStatement(INSERT_SQL);
+	 * preparedStatement.setString(1, newStudent.getName());
+	 * preparedStatement.setString(2, newStudent.getDepartmentName());
+	 * 
+	 * // Execute the insert statement int rowsAffected =
+	 * preparedStatement.executeUpdate();
+	 * 
+	 * // Close the database connection con.close();
+	 * 
+	 * if (rowsAffected > 0) { // Save the student to the database using JPA
+	 * repository //studentRepository.save(newStudent); return
+	 * "Student added successfully"; } else { return "Failed to add the student"; }
+	 * } catch (Exception e) { e.printStackTrace(); return "Error adding student: "
+	 * + e.getMessage(); } }
+	 */
+ }

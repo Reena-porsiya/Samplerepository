@@ -1,0 +1,48 @@
+package com.flights.model;
+
+import java.util.ArrayList;
+
+public class Aircraft {
+	    private int aircraftId;
+	    private int aircraftManufacturerId;
+	    private String model;
+	    
+	    private ArrayList<AircraftManufacturer>aircraftManufacturers;
+
+		public int getAircraftId() {
+			return aircraftId;
+		}
+
+		public void setAircraftId(int aircraftId) {
+			this.aircraftId = aircraftId;
+		}
+
+		public int getAircraftManufacturerId() {
+			return aircraftManufacturerId;
+		}
+
+		public void setAircraftManufacturerId(int aircraftManufacturerId) {
+			this.aircraftManufacturerId = aircraftManufacturerId;
+		}
+
+		public String getModel() {
+			return model;
+		}
+
+		public void setModel(String model) {
+			this.model = model;
+		}
+
+		public ArrayList<AircraftManufacturer> getAircraftManufacturers() {
+			return aircraftManufacturers;
+		}
+
+		public void setAircraftManufacturers(ArrayList<AircraftManufacturer> aircraftManufacturers) {
+			this.aircraftManufacturers = aircraftManufacturers;
+		}
+	    
+	    
+	    
+	   
+
+}

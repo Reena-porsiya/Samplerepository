@@ -1,0 +1,5 @@
+package com.flights.model;
+
+public class AircraftSeat {
+
+}

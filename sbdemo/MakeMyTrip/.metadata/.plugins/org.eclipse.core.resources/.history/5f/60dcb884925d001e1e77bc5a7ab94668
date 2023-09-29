@@ -1,0 +1,8 @@
+package com.flights.model;
+
+public class Direction {
+	private String originIataAirportCode;
+    private String destIataAirportCode;
+    private Schedules schedules;//two 
+
+}

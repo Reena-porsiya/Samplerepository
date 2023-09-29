@@ -1,0 +1,11 @@
+package com.flights.model;
+
+public class AircraftSeat {
+	
+	private int aircraftId;
+    private int seatId;
+    private int travelClassId;
+    private ArrayList<TravelClass> travelClasses; 
+	
+
+}

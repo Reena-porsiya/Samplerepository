@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.security.Timestamp"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="com.flights.model.AircraftManufacturer"/>
+    <fullyQualifiedTypeName name="com.flights.model.TravelClass"/>
+    <fullyQualifiedTypeName name="com.flights.model.Aircraft"/>
+</qualifiedTypeNameHistroy>

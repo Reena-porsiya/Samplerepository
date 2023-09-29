@@ -1,0 +1,75 @@
+package com.flights.entity;
+
+
+import com.flights.model.Aircraft;
+import com.flights.model.AircraftSeat;
+import com.flights.model.Client;
+import com.flights.model.Flight;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "bookings")
+public class BookingEntity {
+
+    @Id
+    @Column(name = "booking_id")
+    private int bookingId;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "flight_call")
+    private Flight flight;
+
+    @ManyToOne
+    @JoinColumn(name = "aircraft_id")
+    private Aircraft aircraft;
+
+    @ManyToOne
+    @JoinColumn(name = "seat_id")
+    private AircraftSeat aircraftSeat;
+
+	public int getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public Aircraft getAircraft() {
+		return aircraft;
+	}
+
+	public void setAircraft(Aircraft aircraft) {
+		this.aircraft = aircraft;
+	}
+
+	public AircraftSeat getAircraftSeat() {
+		return aircraftSeat;
+	}
+
+	public void setAircraftSeat(AircraftSeat aircraftSeat) {
+		this.aircraftSeat = aircraftSeat;
+	}
+    
+}
